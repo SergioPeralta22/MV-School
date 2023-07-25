@@ -11,47 +11,6 @@ class App
     @rentals = []
   end
 
-  def options
-    puts ''
-    puts 'Please choose an option by entering a number:'
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person id'
-    puts '7 - Exit'
-  end
-
-  def select
-    loop do
-      options
-      option = gets.chomp.to_i
-
-      if option == 7
-        puts 'Thank you for using this app!'
-        break
-      elsif option.between?(1, 6)
-        case option
-        when 1
-          list_books
-        when 2
-          list_people
-        when 3
-          create_person
-        when 4
-          create_book
-        when 5
-          create_rental
-        when 6
-          list_rentals
-        end
-      else
-        puts 'Error: Invalid number, try again'
-      end
-    end
-  end
-
   def list_books
     @books.each do |object|
       puts "Title: '#{object.title}', Author: #{object.author}"
@@ -80,7 +39,7 @@ class App
       else
         @people.push(Student.new(age: person_age, name: person_name))
       end
-      puts 'Person created successfully'
+      puts 'Student created successfully'
     when 2
       print 'Age: '
       person_age = gets.chomp.to_i
@@ -89,7 +48,7 @@ class App
       print 'Specialization: '
       person_specialization = gets.chomp.to_s
       @people.push(Teacher.new(person_specialization, person_age, person_name))
-      puts 'Person created successfully'
+      puts 'Teacher created successfully'
     else
       puts 'Error: Invalid number, try again'
       create_person
