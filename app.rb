@@ -47,7 +47,8 @@ class App
       person_name = gets.chomp.to_s
       print 'Specialization: '
       person_specialization = gets.chomp.to_s
-      @people.push(Teacher.new(person_specialization, person_age, person_name))
+      id = rand(1..1000)
+      @people.push(Teacher.new(person_specialization,id , person_name, person_age))
       puts 'Teacher created successfully'
     else
       puts 'Error: Invalid number, try again'
