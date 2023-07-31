@@ -46,7 +46,7 @@ After you're finished please remove all the comments and instructions!
 # 📗 Table of Contents
 
 - [📗 Table of Contents](#-table-of-contents)
-- [📖 Vet Clinic Database ](#-vet-clinic-database-)
+- [📖 School Library ](#-school-library-)
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
@@ -109,8 +109,11 @@ After you're finished please remove all the comments and instructions!
 
 ### Key Features <a name="key-features"></a>
 
-
-- **It contains three classes**
+- **Def Classes**
+- **Methods inside classes**
+- **Decorate a class**
+- **Set up associations**
+- **Implement KISS, YAGNI, DRY AND SOLID**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -194,11 +197,18 @@ Example:
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 Sergio Peralta
+👤 **Sergio Peralta**
 
 - GitHub: [@SergioPeralta22](https://github.com/SergioPeralta22)
 - Twitter: [@SePeralta22](https://twitter.com/SePeralta22)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/sergioperalta22)
+
+👤 **Martín Ezequiel González**
+
+- GitHub: [@Mar12358](https://github.com/Mar12358)
+- Twitter: [@MarezegonZ](https://twitter.com/MarezegonZ)
+- LinkedIn: [Martin Ezequiel Gonzalez](https://www.linkedin.com/in/martin-ezequiel-gonzalez-30a413260/)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -206,7 +216,7 @@ Example:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **More data**
+- [ ] **Preserve data**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
