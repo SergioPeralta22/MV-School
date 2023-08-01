@@ -2,6 +2,7 @@ require_relative 'student'
 require_relative 'teacher'
 require_relative 'book'
 require_relative 'rental'
+require 'json'
 
 class App
   def initialize
@@ -9,6 +10,23 @@ class App
     @books = []
     @people = []
     @rentals = []
+  end
+
+  def load_files
+    if File.exist?('books.json')
+      book_file = File.open('books.json')
+      @books = JSON.parse(book_file)
+    end
+
+    if File.exist?('people.json')
+      people_file = File.open('people.json')
+      @people = JSON.parse(people_file)
+    end
+
+    return unless File.exist?('rentals.json')
+
+    rentals_file = File.open('rentals.json')
+    @rentals = JSON.parse(rentals_file)
   end
 
   def list_books
