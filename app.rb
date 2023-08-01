@@ -55,7 +55,7 @@ class App
     return unless @rentals.any?
 
     rentals_array = []
-    @people.each do |object|
+    @rentals.each do |object|
       rental_data = [
         object.book.title,
         object.person.id,
