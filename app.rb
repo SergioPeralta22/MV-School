@@ -24,7 +24,16 @@ class App
 
     if File.exist?('people.json')
       people_file = File.open('people.json')
-      @people = JSON.parse(people_file)
+      people_file_data = people_file.read
+      people_json_file = JSON.parse(people_file_data)
+      people_json_file.each do |person|
+        if person[0] == 'Student'
+          print person[4]
+          @people.push(Student.new(id: person[1], name: person[2], age: person[3], parent_permission: person[4]))
+        elsif person[0] == 'Teacher'
+          @people.push(Teacher.new(id: person[1], name: person[2], age: person[3], specialization: person[4]))
+        end
+      end
     end
 
     return unless File.exist?('rentals.json')
@@ -47,9 +56,9 @@ class App
       people_array = []
       @people.each do |object|
         if object.is_a?(Student)
-          people_array << [object.class, object.name, object.id, object.age, object.parent_permission]
+          people_array << [object.class, object.id, object.name, object.age, object.parent_permission]
         elsif object.is_a?(Teacher)
-          people_array << [object.class, object.name, object.id, object.age, object.especializacion]
+          people_array << [object.class, object.id, object.name, object.age, object.specialization]
         end
       end
       people_json = JSON.generate(people_array)
