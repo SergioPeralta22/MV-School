@@ -29,6 +29,18 @@ class App
     @rentals = JSON.parse(rentals_file)
   end
 
+  def write_files
+    if @books.any?
+      books_json = JSON.generate(@books)
+      File.write('books.json', books_json)
+    end
+
+    if @rentals.any?
+      rentals_json = JSON.generate(@rentals)
+      File.write('rentals.json', rentals_json)
+    end
+  end
+
   def list_books
     @books.each do |object|
       puts "Title: '#{object.title}', Author: #{object.author}"

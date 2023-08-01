@@ -22,6 +22,7 @@ class ManageOption
       when 6
         app.list_rentals
       when 7
+        app.write_files
         puts 'Thank you for using this app!'
         break
       else
