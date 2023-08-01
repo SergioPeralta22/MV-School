@@ -14,8 +14,10 @@ class App
 
   def load_files
     if File.exist?('books.json')
-      books_file = JSON.parse(File.read('books.json'))
-      books_file.each do |book|
+      books_file = File.open('books.json')
+      books_file_data = books_file.read
+      books_json_file = JSON.parse(books_file_data)
+      books_json_file.each do |book|
         @books.push(Book.new(book[0], book[1]))
       end
     end

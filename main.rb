@@ -5,7 +5,7 @@ def main
   app = App.new
   app.load_files
   manage_option = ManageOption.new
-  manage_option.manage_option
+  manage_option.manage_option(app)
 end
 
 main

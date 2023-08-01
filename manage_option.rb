@@ -2,8 +2,7 @@ require_relative 'app'
 require_relative 'print_options'
 
 class ManageOption
-  def manage_option
-    app = App.new
+  def manage_option(app)
     print_options = PrintOptions.new
     loop do
       print_options.show
