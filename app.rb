@@ -31,14 +31,40 @@ class App
 
   def write_files
     if @books.any?
-      books_json = JSON.generate(@books)
+      books_array = []
+      @books.each do |object|
+        books_array << [object.title, object.author]
+      end
+      books_json = JSON.generate(books_array)
       File.write('books.json', books_json)
     end
 
-    if @rentals.any?
-      rentals_json = JSON.generate(@rentals)
-      File.write('rentals.json', rentals_json)
+    if @people.any?
+      people_array = []
+      @people.each do |object|
+        if object.is_a?(Student)
+          people_array << [object.class, object.name, object.id, object.age, object.parent_permission]
+        elsif object.is_a?(Teacher)
+          people_array << [object.class, object.name, object.id, object.age, object.especializacion]
+        end
+      end
+      people_json = JSON.generate(people_array)
+      File.write('people.json', people_json)
     end
+
+    return unless @rentals.any?
+
+    rentals_array = []
+    @people.each do |object|
+      rental_data = [
+        object.book.title,
+        object.person.id,
+        object.date
+      ]
+      rentals_array << rental_data
+    end
+    rentals_json = JSON.generate(rentals_array)
+    File.write('rentals.json', rentals_json)
   end
 
   def list_books
