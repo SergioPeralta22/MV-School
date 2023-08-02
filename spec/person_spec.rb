@@ -44,6 +44,4 @@ RSpec.describe Person do
       expect(person.can_use_services?).to be_falsey
     end
   end
-
-  
 end
