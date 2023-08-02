@@ -31,7 +31,7 @@ class App
           print person[4]
           @people.push(Student.new(id: person[1], name: person[2], age: person[3], parent_permission: person[4]))
         elsif person[0] == 'Teacher'
-          @people.push(Teacher.new(id: person[1], name: person[2], age: person[3], specialization: person[4]))
+          @people.push(Teacher.new(id: person[2], name: person[3], age: person[4], specialization: person[1]))
         end
       end
     end
@@ -58,7 +58,7 @@ class App
         if object.is_a?(Student)
           people_array << [object.class, object.id, object.name, object.age, object.parent_permission]
         elsif object.is_a?(Teacher)
-          people_array << [object.class, object.id, object.name, object.age, object.specialization]
+          people_array << [object.class, object.specialization, object.id, object.name, object.age]
         end
       end
       people_json = JSON.generate(people_array)
