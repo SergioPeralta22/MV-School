@@ -12,6 +12,14 @@ class App
     @rentals = []
   end
 
+  def load_person(person)
+    if person[0] == 'Student'
+      @people.push(Student.new(id: person[1], name: person[2], age: person[3], parent_permission: person[4]))
+    elsif person[0] == 'Teacher'
+      @people.push(Teacher.new(person[1], person[3], person[2], person[4]))
+    end
+  end
+
   def load_files
     if File.exist?('books.json')
       books_file = File.open('books.json')
@@ -27,12 +35,7 @@ class App
       people_file_data = people_file.read
       people_json_file = JSON.parse(people_file_data)
       people_json_file.each do |person|
-        if person[0] == 'Student'
-          print person[4]
-          @people.push(Student.new(id: person[1], name: person[2], age: person[3], parent_permission: person[4]))
-        elsif person[0] == 'Teacher'
-          @people.push(Teacher.new(id: person[2], name: person[3], age: person[4], specialization: person[1]))
-        end
+        load_person(person)
       end
     end
 
@@ -46,12 +49,22 @@ class App
       person_data = rental_data[1]
       date = rental_data[2]
 
-
       book = Book.new(book_data[0], book_data[1])
-      person = Person.new(person_data[0], person_data[1])
-
+      person = Person.new(person_data[1], person_data[0])
       @rentals.push(Rental.new(book, person, date))
     end
+  end
+
+  def export_people
+    people_array = []
+    @people.each do |object|
+      if object.is_a?(Student)
+        people_array << [object.class, object.id, object.name, object.age, object.parent_permission]
+      elsif object.is_a?(Teacher)
+        people_array << [object.class, object.specialization, object.id, object.name, object.age]
+      end
+    end
+    people_array
   end
 
   def write_files
@@ -65,14 +78,7 @@ class App
     end
 
     if @people.any?
-      people_array = []
-      @people.each do |object|
-        if object.is_a?(Student)
-          people_array << [object.class, object.id, object.name, object.age, object.parent_permission]
-        elsif object.is_a?(Teacher)
-          people_array << [object.class, object.specialization, object.id, object.name, object.age]
-        end
-      end
+      people_array = export_people
       people_json = JSON.generate(people_array)
       File.write('people.json', people_json)
     end
@@ -126,7 +132,7 @@ class App
       print 'Specialization: '
       person_specialization = gets.chomp.to_s
       id = rand(1..1000)
-      @people.push(Teacher.new(person_specialization, id, person_name, person_age))
+      @people.push(Teacher.new(person_specialization, person_name, id, person_age))
       puts 'Teacher created successfully'
     else puts 'Error: Invalid number, try again'
          create_person
