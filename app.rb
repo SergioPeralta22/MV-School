@@ -39,7 +39,19 @@ class App
     return unless File.exist?('rentals.json')
 
     rentals_file = File.open('rentals.json')
-    @rentals = JSON.parse(rentals_file)
+    rentals_file_data = rentals_file.read
+    rentals_json_file = JSON.parse(rentals_file_data)
+    rentals_json_file.each do |rental_data|
+      book_data = rental_data[0]
+      person_data = rental_data[1]
+      date = rental_data[2]
+
+
+      book = Book.new(book_data[0], book_data[1])
+      person = Person.new(person_data[0], person_data[1])
+
+      @rentals.push(Rental.new(book, person, date))
+    end
   end
 
   def write_files
@@ -67,15 +79,12 @@ class App
 
     return unless @rentals.any?
 
-    rentals_array = []
-    @rentals.each do |object|
-      rental_data = [
-        object.book.title,
-        object.person.id,
-        object.date
-      ]
-      rentals_array << rental_data
+    rentals_array = @rentals.map do |object|
+      book_array = [object.book.title, object.book.author]
+      person_array = [object.person.name, object.person.id]
+      [book_array, person_array, object.date]
     end
+
     rentals_json = JSON.generate(rentals_array)
     File.write('rentals.json', rentals_json)
   end
@@ -119,9 +128,8 @@ class App
       id = rand(1..1000)
       @people.push(Teacher.new(person_specialization, id, person_name, person_age))
       puts 'Teacher created successfully'
-    else
-      puts 'Error: Invalid number, try again'
-      create_person
+    else puts 'Error: Invalid number, try again'
+         create_person
     end
   end
 
