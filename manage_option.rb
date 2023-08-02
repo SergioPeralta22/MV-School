@@ -2,8 +2,7 @@ require_relative 'app'
 require_relative 'print_options'
 
 class ManageOption
-  def manage_option
-    app = App.new
+  def manage_option(app)
     print_options = PrintOptions.new
     loop do
       print_options.show
@@ -22,6 +21,7 @@ class ManageOption
       when 6
         app.list_rentals
       when 7
+        app.write_files
         puts 'Thank you for using this app!'
         break
       else

@@ -114,6 +114,7 @@ After you're finished please remove all the comments and instructions!
 - **Decorate a class**
 - **Set up associations**
 - **Implement KISS, YAGNI, DRY AND SOLID**
+- **Preserve data**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -216,7 +217,7 @@ Example:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Preserve data**
+- [ ] **Improve UI**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
