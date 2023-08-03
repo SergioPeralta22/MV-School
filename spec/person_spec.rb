@@ -44,4 +44,22 @@ RSpec.describe Person do
       expect(person.can_use_services?).to be_falsey
     end
   end
+
+  describe '#add_rental' do
+    it 'adds a rental to the person\'s rentals array' do
+      person = Person.new(1, 'John', 20)
+      book = Book.new('The Lord of the Rings', 'J.R.R. Tolkien')
+      rental = Rental.new(book, person, '2023-08-03')
+      person.add_rental(rental)
+      expect(person.rentals).to include(rental)
+    end
+
+    it 'sets the person as the rental\'s person' do
+      person = Person.new(1, 'John', 20)
+      book = Book.new('The Lord of the Rings', 'J.R.R. Tolkien')
+      rental = Rental.new(book, person, '2023-08-03')
+      person.add_rental(rental)
+      expect(rental.person).to eq(person)
+    end
+  end
 end
